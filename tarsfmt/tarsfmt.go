@@ -38,7 +38,7 @@ func main() {
 			return
 		}
 		if err := processFile("<standard input>", os.Stdin, os.Stdout, true); err != nil {
-			panic(err.Error())
+			fmt.Fprintln(os.Stderr, "error: %v", err)
 			return
 		}
 		return
@@ -55,7 +55,7 @@ func main() {
 		default:
 			if err := processFile(path, nil, os.Stdout, false); err != nil {
 				// TODO err
-				panic(err.Error())
+				fmt.Fprintln(os.Stderr, "error: err:"+err.Error())
 			}
 		}
 	}
