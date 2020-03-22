@@ -5,9 +5,12 @@ tarsfmt
 tarsfmt能够对tars文件进行格式化，同时修复基本的错误，如结尾没有加`;`，结构体元素序标识序号错误等。
 
 ## 使用
-tarsfmt的使用方法和gofmt基本相同。需要注意的是，**所有的`{`需要按照golang的语法书写，即`{`不能另起一行**。
-使用效果如下
+1. tarsfmt的使用方法和gofmt基本相同。
+2. 注意如下两点
+- 所有的`{`需要按照golang的语法书写，即`{`不能另起一行；
+- 自定义元素在引用时，其定义语句在文件必须在引用点的上部；
 
+效果如下：
 ```
 $ ./tarsfmt -d test
 diff -u test/test.tars.orig test/test.tars
@@ -37,6 +40,6 @@ diff -u test/test.tars.orig test/test.tars
 +
 ```
 ## 未完成功能
-- 在结构体内对单独存在一行的注释的解析
-- 对多行/**/ 注释的解析
-- interface中目前只支持 `Resp func(ReqType req); `此种格式数据的支持
+- 在结构体内对单独存在一行的注释的解析；
+- 对多行/**/ 注释的解析；
+- interface中目前只支持 `Resp func(ReqType req); `此种格式数据的支持；
