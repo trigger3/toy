@@ -4,15 +4,6 @@ import (
 	"toy/mytype"
 )
 
-//const (
-//	TYPE_MODULE             int8 = iota + 1 // model
-//	TYPE_CODEBLOCK_BEGIN                    // 代码块开始
-//	TYPE_CODE_BLOCK_END                     // 代码块结束
-//	TYPE_ELEMENT_DEFINATION                 // 字段定义
-//	TYPE_ENUM_DEFIANTION                    // 枚举定义
-//	TYPE_INTERFACE                          //
-//)
-
 const (
 	TYPE_NIL            int8 = iota
 	TYPE_MODULE_INCLUDE      // module引用
