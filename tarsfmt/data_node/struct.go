@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"toy/tarsfmt/key_words"
-	"toy/tarsfmt/util"
+	"github.com/trigger3/toy/tarsfmt/key_words"
+	"github.com/trigger3/toy/tarsfmt/util"
 )
 
 type Struct struct {

@@ -10,10 +10,11 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"toy/tarsfmt/file"
-	"toy/tarsfmt/formator"
-	"toy/tarsfmt/key_words"
-	"toy/tarsfmt/line_parser"
+
+	"github.com/trigger3/toy/tarsfmt/file"
+	"github.com/trigger3/toy/tarsfmt/formator"
+	"github.com/trigger3/toy/tarsfmt/key_words"
+	"github.com/trigger3/toy/tarsfmt/line_parser"
 )
 
 var (

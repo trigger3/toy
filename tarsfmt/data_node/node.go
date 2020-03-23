@@ -2,7 +2,8 @@ package data_node
 
 import (
 	"bytes"
-	"toy/mytype"
+
+	"github.com/trigger3/toy/mytype"
 )
 
 const (

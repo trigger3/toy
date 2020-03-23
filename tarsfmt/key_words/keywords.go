@@ -1,7 +1,7 @@
 package key_words
 
 import (
-	"toy/mytype"
+	"github.com/trigger3/toy/mytype"
 )
 
 const (

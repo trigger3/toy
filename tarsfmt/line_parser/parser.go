@@ -2,7 +2,8 @@ package line_parser
 
 import (
 	"strings"
-	"toy/tarsfmt/key_words"
+
+	"github.com/trigger3/toy/tarsfmt/key_words"
 )
 
 type Parser interface {
