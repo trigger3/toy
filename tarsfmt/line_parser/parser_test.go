@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"reflect"
 	"testing"
-	"toy/tarsfmt/key_words"
+
+	"github.com/trigger3/toy/tarsfmt/key_words"
 )
 
 func Test_parserImp_getComment(t *testing.T) {

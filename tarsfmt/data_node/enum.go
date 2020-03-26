@@ -84,6 +84,9 @@ func (e *Enum) parseTail(terms []string) error {
 // WEIBO = 3,
 func (e *Enum) parseBody(terms []string) error {
 	e.isBegin = false
+	if e.keyWordsMgr.IsCommentWord(terms[0]) {
+		return e.parseComment(terms)
+	}
 
 	if len(terms) < e.stateMinLen {
 		return ErrSyntexInvaild
@@ -101,6 +104,17 @@ func (e *Enum) parseBody(terms []string) error {
 		Level:     2,
 	}
 
+	e.statements = append(e.statements, state)
+
+	return nil
+}
+
+func (e *Enum) parseComment(terms []string) error {
+	state := StandardStatement{
+		Statement: "",
+		Comment:   parseComment(terms),
+		Level:     2,
+	}
 	e.statements = append(e.statements, state)
 
 	return nil

@@ -42,7 +42,7 @@ func parseComment(terms []string) string {
 			return strings.Join(terms[idx:], JOIN_CHAR)
 		} else if term == "/*" {
 			if terms[len(terms)-1] == "*/" {
-				return strings.Join(terms[idx:len(terms)-1], JOIN_CHAR)
+				return strings.Join(terms[idx:len(terms)], JOIN_CHAR)
 			} else {
 				return strings.Join(terms[idx:], JOIN_CHAR)
 			}

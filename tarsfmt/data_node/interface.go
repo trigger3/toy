@@ -80,8 +80,9 @@ func (i *Interface) parseTail(terms []string) error {
 
 // Resp DoReq(Req req); //xxx
 func (i *Interface) parseBody(terms []string) error {
-	//terms := i.formatNewTerm(terms)
-
+	if i.keyWordsMgr.IsCommentWord(terms[0]) {
+		return i.parseComment(terms)
+	}
 	if len(terms) < i.stateMinLen {
 		return ErrSyntexInvaild
 	}
@@ -107,6 +108,17 @@ func (i *Interface) parseBody(terms []string) error {
 		Level:     2,
 	}
 
+	i.statements = append(i.statements, state)
+
+	return nil
+}
+
+func (i *Interface) parseComment(terms []string) error {
+	state := StandardStatement{
+		Statement: "",
+		Comment:   parseComment(terms),
+		Level:     2,
+	}
 	i.statements = append(i.statements, state)
 
 	return nil

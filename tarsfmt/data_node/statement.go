@@ -13,13 +13,13 @@ func (s *StandardStatement) Format(buff *bytes.Buffer, maxLen int) {
 		buff.WriteString("    ")
 	}
 	buff.WriteString(s.Statement)
-	if len(s.Comment) == 0 {
-		return
-	}
-	for i := 0; i < maxLen-len(s.Statement); i++ {
+	if len(s.Comment) != 0 && len(s.Statement) != 0 {
+		for i := 0; i < maxLen-len(s.Statement); i++ {
+			buff.WriteByte(' ')
+		}
 		buff.WriteByte(' ')
 	}
-	buff.WriteByte(' ')
+
 	buff.WriteString(s.Comment)
 }
 

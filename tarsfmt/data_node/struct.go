@@ -89,12 +89,11 @@ func (s *Struct) parseTail(terms []string) error {
 }
 
 func (s *Struct) parseBody(terms []string) error {
-	// 15 require common::head head;  // 更新时间
-	//if !s.blockBeginFlag {
-	//	return false, ErrCodeBlockNotBegin
-	//}
-
 	s.isBegin = false
+
+	if s.keyWordsMgr.IsCommentWord(terms[0]) {
+		return s.parseComment(terms)
+	}
 
 	termsLen := len(terms)
 	if termsLen < s.stateMinLen {
@@ -108,6 +107,17 @@ func (s *Struct) parseBody(terms []string) error {
 	}
 
 	return s.formatNewTerm(newTerms)
+}
+
+func (s *Struct) parseComment(terms []string) error {
+	state := StandardStatement{
+		Statement: "",
+		Comment:   parseComment(terms),
+		Level:     2,
+	}
+	s.statements = append(s.statements, state)
+
+	return nil
 }
 
 func (s *Struct) formatElementType(terms []string) ([]string, error) {

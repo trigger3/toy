@@ -33,7 +33,7 @@ type KeyWordsMgr struct {
 
 func NewKeyWordsMgr() *KeyWordsMgr {
 	sepFlag := mytype.NewSet('{', '}', '/', '*', ';', '<', '>', '(', ')', ':', ',', '.', '"', '#')
-	commentFlag := mytype.NewSet('/')
+	commentFlag := mytype.NewSet('/', "//", "/*")
 	doubleSepFlag := mytype.NewSet('/', ':')
 	basicType := mytype.NewSet("int", "long", "float", "string", "void", "bool", "byte", "short",
 		"double", "unsigned byte", "unsigned int", "unsigned short")
@@ -83,7 +83,7 @@ func (k *KeyWordsMgr) IsSepWord(w int32) bool {
 	return k.sepFlag.Contains(w)
 }
 
-func (k *KeyWordsMgr) IsCommentWord(w int32) bool {
+func (k *KeyWordsMgr) IsCommentWord(w interface{}) bool {
 	return k.commentFlag.Contains(w)
 }
 
