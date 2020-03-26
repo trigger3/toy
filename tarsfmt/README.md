@@ -4,7 +4,7 @@ tarsfmt
 ## 1.功能
 tarsfmt能够对tars文件进行格式化，同时修复基本的错误，如结尾没有加`;`，结构体元素序标识序号错误等。
 
-## 使用
+## 2.使用
 1. tarsfmt的使用方法和gofmt基本相同。
 2. 注意如下两点
 - 所有的`{`需要按照golang的语法书写，即`{`不能另起一行；
@@ -39,7 +39,6 @@ diff -u test/test.tars.orig test/test.tars
  };
 +
 ```
-## 未完成功能
-- 在结构体内对单独存在一行的注释的解析；
+## 3. TODOLIST
 - 对多行/**/ 注释的解析；
 - interface中目前只支持 `Resp func(ReqType req); `此种格式数据的支持；
