@@ -54,4 +54,6 @@ func (m *ModuleInclude) Parse(terms []string, isEnd bool) error {
 func (m *ModuleInclude) Print(buff *bytes.Buffer) {
 	moduleInclude := fmt.Sprintf("#include \"%v.tars\" %v", m.moduleName, m.comment)
 	buff.WriteString(moduleInclude)
+	buff.WriteString("\n")
+
 }

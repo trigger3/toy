@@ -36,10 +36,12 @@ func main() {
 	if flag.NArg() == 0 {
 		if *write {
 			fmt.Fprintln(os.Stderr, "error: cannot use -w with standard input")
+			os.Exit(-1)
 			return
 		}
 		if err := processFile("<standard input>", os.Stdin, os.Stdout, true); err != nil {
 			fmt.Fprintln(os.Stderr, "error: %v", err)
+			os.Exit(-2)
 			return
 		}
 		return
@@ -50,13 +52,15 @@ func main() {
 		switch dir, err := os.Stat(path); {
 		case err != nil:
 			fmt.Fprintln(os.Stderr, "error: err:"+err.Error())
+			os.Exit(-3)
 			return
 		case dir.IsDir():
 			walkDir(path)
 		default:
 			if err := processFile(path, nil, os.Stdout, false); err != nil {
-				// TODO err
 				fmt.Fprintln(os.Stderr, "error: err:"+err.Error())
+				os.Exit(-2)
+				// TODO err
 			}
 		}
 	}
@@ -144,18 +148,20 @@ func format(file string, src []byte) ([]byte, error) {
 	formator1 := formator.NewFormator()
 	rBuff := bytes.NewBuffer(src)
 	scanner := bufio.NewScanner(rBuff)
-	i := 1
+	i := 0
 	for scanner.Scan() {
+		i++
 		line := strings.Trim(scanner.Text(), " \n\r\t")
 		if len(line) == 0 {
-			i++
 			continue
 		}
 		terms := lineParser.ParseOneLine(line)
+		if terms == nil || len(terms) == 0 {
+			continue
+		}
 		if err := formator1.Format(terms); err != nil {
 			return nil, fmt.Errorf("%v:%v, state:%v, err:%w", file, i, line, err)
 		}
-		i++
 	}
 	if err := scanner.Err(); err != nil {
 		return nil, err

@@ -109,6 +109,9 @@ func (m *Module) parseBody(terms []string) error {
 	if m.lastNode == nil {
 		//m.lastNode = m.getNodeParser(dataType)
 		node := m.getNodeParser(dataType)
+		if node == nil {
+			return fmt.Errorf("key word is invalid, key:%v", terms[0])
+		}
 		if err := node.Parse(terms, false); err != nil {
 			return err
 		}

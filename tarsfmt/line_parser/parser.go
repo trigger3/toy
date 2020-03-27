@@ -19,6 +19,9 @@ type parserImp struct {
 }
 
 func (p *parserImp) ParseOneLine(line string) []string {
+	if line == "//" {
+		return nil
+	}
 	terms := p.parseBySpace(line)
 	//util.PrintArray(terms)
 	return p.parseBySep(terms)
