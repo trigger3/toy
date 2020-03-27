@@ -40,7 +40,7 @@ func main() {
 			return
 		}
 		if err := processFile("<standard input>", os.Stdin, os.Stdout, true); err != nil {
-			fmt.Fprintln(os.Stderr, "error: %v", err)
+			fmt.Fprintln(os.Stderr, err)
 			os.Exit(-2)
 			return
 		}
@@ -51,14 +51,14 @@ func main() {
 		path := flag.Arg(i)
 		switch dir, err := os.Stat(path); {
 		case err != nil:
-			fmt.Fprintln(os.Stderr, "error: err:"+err.Error())
+			fmt.Fprintln(os.Stderr, err.Error())
 			os.Exit(-3)
 			return
 		case dir.IsDir():
 			walkDir(path)
 		default:
 			if err := processFile(path, nil, os.Stdout, false); err != nil {
-				fmt.Fprintln(os.Stderr, "error: err:"+err.Error())
+				fmt.Fprintln(os.Stderr, err.Error())
 				os.Exit(-2)
 				// TODO err
 			}
